@@ -1,0 +1,153 @@
+<!-- Modal Header with Close Button -->
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{ Person && Person.personID ? 'Actualizar Persona' : 'Nueva Persona' }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+
+<!-- Modal Body with Form -->
+<div class="modal-body">
+    <form (ngSubmit)="create()" #personForm="ngForm">
+        <div class="row">
+            <!-- Nombre Field -->
+            <div class="col-md-6">
+                <div class="mb-3 position-relative">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre"
+                        [(ngModel)]="Person.name" required pattern="^[A-ZÁÉÍÓÚÑ\s]+$" #nameInput="ngModel"
+                        [ngClass]="{'is-invalid': nameInput.invalid && (nameInput.dirty || nameInput.touched), 'is-valid': nameInput.valid && nameInput.touched}" />
+                    <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="invalid-feedback">
+                    </div>
+                    <div *ngIf="nameInput.valid && nameInput.touched" class="valid-feedback">
+                        Nombre válido.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apellido Field -->
+            <div class="col-md-6">
+                <div class="mb-3 position-relative">
+                    <label for="lastName" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellido"
+                        [(ngModel)]="Person.lastName" required pattern="^[A-ZÁÉÍÓÚÑ\s]+$" #lastNameInput="ngModel"
+                        [ngClass]="{'is-invalid': lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched), 'is-valid': lastNameInput.valid && lastNameInput.touched}" />
+                    <div *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)" class="invalid-feedback">
+                    </div>
+                    <div *ngIf="lastNameInput.valid && lastNameInput.touched" class="valid-feedback">
+                        Apellido válido.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Tipo de Documento Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="documentType" class="form-label">Tipo de Documento</label>
+                    <select class="form-select" id="documentType" name="documentType" [(ngModel)]="Person.documentType"
+                        required #documentType="ngModel"
+                        [ngClass]="{'is-valid': documentType.valid && documentType.touched, 'is-invalid': documentType.invalid && documentType.touched}">
+                        <option value="" disabled [selected]="true">Seleccione Tipo de Documento</option>
+                        <option value="DNI">DNI</option>
+                        <option value="CNE">CNE</option>
+                    </select>
+                    <div *ngIf="documentType.invalid && documentType.touched" class="invalid-feedback">
+                        Por favor, seleccione un tipo de documento.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Número de Documento Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="documentNumber" class="form-label">Número de Documento</label>
+                    <input type="text" class="form-control" id="documentNumber" name="documentNumber"
+                        placeholder="Número de Documento" [(ngModel)]="Person.documentNumber" pattern="[0-9]+" required
+                        title="Por favor, ingrese un número de documento válido" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Teléfono Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Teléfono"
+                        [(ngModel)]="Person.phone" required pattern="^9\d{8}$" #phoneInput="ngModel"
+                        [ngClass]="{'is-invalid': phoneInput.invalid && (phoneInput.dirty || phoneInput.touched), 'is-valid': phoneInput.valid && phoneInput.touched}" />
+                    <div *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)" class="invalid-feedback">
+                    </div>
+                    <div *ngIf="phoneInput.valid && phoneInput.touched" class="valid-feedback">
+                        Número de teléfono válido.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico"
+                        [(ngModel)]="Person.email" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Dirección Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="address" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Dirección"
+                        [(ngModel)]="Person.address" />
+                </div>
+            </div>
+
+            <!-- Ciudad Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="city" class="form-label">Distrito</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Distrito"
+                        [(ngModel)]="Person.city" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- País Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="country" class="form-label">Fecha de cumpleaños</label>
+                    <input type="date" class="form-control" id="country" name="country" placeholder="País"
+                        [(ngModel)]="Person.fechaCumpleanos" />
+                </div>
+            </div>
+
+            <!-- Rol Field -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="role" class="form-label">Rol</label>
+                    <select class="form-select" id="role" name="role" [(ngModel)]="Person.role" required #role="ngModel"
+                        [ngClass]="{'is-valid': role.valid && role.touched, 'is-invalid': role.invalid && role.touched}">
+                        <option value="" disabled [selected]="true">Seleccione Rol</option>
+                        <option value="admin">Admin</option>
+                        <option value="admin">Cliente</option>
+
+                    </select>
+                    <div *ngIf="role.invalid && role.touched" class="invalid-feedback">
+                        Por favor, seleccione un rol.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer with Save and Close Buttons -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!personForm.valid">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+        </div>
+    </form>
+</div>

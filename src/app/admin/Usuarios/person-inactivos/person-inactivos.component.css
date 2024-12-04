@@ -1,0 +1,29 @@
+.export-buttons {
+    justify-content: flex-center;
+    margin-top: 10px;
+  }
+  
+  .export-buttons .btn {
+    margin-right: 10px;
+    font-size: 16px; /* Ajustar tamaño de fuente */
+    font-weight: bold; /* Ajustar peso de fuente */
+  }
+  
+  .export-buttons .excel-btn {
+    background-color: #4CAF50; /* Color de fondo verde */
+    border-color: #4CAF50; /* Color de borde verde */
+    color: white; /* Color del texto blanco */
+  }
+  
+  .export-buttons .csv-btn {
+    background-color: #f44336; /* Color de fondo rojo */
+    border-color: #f44336; /* Color de borde rojo */
+    color: white; /* Color del texto blanco */
+  }
+  
+  .export-buttons .pdf-btn {
+    background-color: #2196F3; /* Color de fondo azul */
+    border-color: #2196F3; /* Color de borde azul */
+    color: white; /* Color del texto blanco */
+  }
+  

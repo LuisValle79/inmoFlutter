@@ -1,0 +1,103 @@
+<app-sidebar></app-sidebar>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <!-- Contenido del sidebar -->
+          <h5 class="card-title">Menú</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/Person">Personas Activas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/inactivos-p">Personas
+                Inactivas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="col-md-9">
+      <div class="card border-primary shadow-sm mb-3">
+        <div class="card-header bg-primary text-white">Listado de Personas
+          Inactivas</div>
+        <div class="card-body">
+          <div class="d-flex mb-3">
+            <!-- Botones de exportación -->
+            <div class="export-buttons mb-3">
+              <button type="button" class="btn btn-outline-success mr-2"
+                (click)="exportToExcel()">
+                Exportar a Excel
+              </button>
+              <button type="button" class="btn btn-outline-primary mr-2"
+                (click)="exportToCSV()">
+                Exportar a CSV
+              </button>
+              <button type="button" class="btn btn-outline-danger"
+                (click)="exportToPDF()">
+                Exportar a PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="bg-primary text-white">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Tipo de Documento</th>
+                  <th>Número de Documento</th>
+                  <th>Teléfono</th>
+                  <th>Email</th>
+                  <th>Dirección</th>
+                  <th>Ciudad</th>
+                  <th>País</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Restaurar</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let person of inactivePersons">
+                  <td>{{ person.name }}</td>
+                  <td>{{ person.lastName }}</td>
+                  <td>{{ person.documentType }}</td>
+                  <td>{{ person.documentNumber }}</td>
+                  <td>{{ person.phone }}</td>
+                  <td>{{ person.email }}</td>
+                  <td>{{ person.address }}</td>
+                  <td>{{ person.city }}</td>
+                  <td>{{ person.fechaCumpleanos | date: 'dd-MMM-yyyy' }}</td>
+                  <td>{{ person.role }}</td>
+                  <td>{{ person.status }}</td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-success btn-sm"
+                        (click)="activatePerson(person.personID)">Activar</button>
+                    </div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm"
+                      (click)="deletePerson(person.personID)">Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
